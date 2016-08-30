@@ -47,7 +47,7 @@ public:
 	};
 	
 protected:
-	int fingerId;
+	int fingerId = 0;
 };
 
 #endif	

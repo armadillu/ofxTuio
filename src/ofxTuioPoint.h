@@ -88,7 +88,7 @@ public:
 	
 	
 protected:
-	float xpos, ypos;
+	float xpos = 0, ypos = 0;
 };
 
 #endif	
