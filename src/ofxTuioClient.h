@@ -233,7 +233,7 @@ public:
 		for (tit=cursorList.begin(); tit != cursorList.end(); tit++) {
 			ofxTuioCursor *blob = (*tit);
 
-			glColor3f(1.0,1.0,1.0);
+			ofSetColor(255,255,255);
 			ofEllipse(blob->getX()*ofGetWidth(), blob->getY()*ofGetHeight(), 10.0, 10.0);
 			string str = "SessionId: "+ofToString((int)(blob->getSessionId()));
 			ofDrawBitmapString(str, blob->getX()*ofGetWidth()-10.0, blob->getY()*ofGetHeight()+25.0);
@@ -245,12 +245,14 @@ public:
 		list<ofxTuioObject*>::iterator tobj;
 		for (tobj=objectList.begin(); tobj != objectList.end(); tobj++) {
 			ofxTuioObject *blob = (*tobj);
-			glColor3f(1.0,0.0,0.0);
+			//glColor3f(1.0,0.0,0.0);
+			ofSetColor(255,0,0);
 			glPushMatrix();
 		    glTranslatef(blob->getX()*ofGetWidth(), blob->getY()*ofGetHeight(), 0.0);
 			glRotatef(blob->getAngleDegrees(), 0.0, 0.0, 1.0);
 			ofRect(-10.0, -10.0, 20.0, 20.0);
-			glColor3f(1.0,1.0,1.0);
+			ofSetColor(255,255,255);
+			//glColor3f(1.0,1.0,1.0);
 			ofLine(0, 0, 0, 10);
 			glPopMatrix();
 			string str = "FiducialId: "+ofToString((int)(blob->getFiducialId()));
