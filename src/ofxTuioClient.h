@@ -129,13 +129,30 @@ public:
 			{
 				if( m.getArgAsString( 0 ) == "set" ){
 					if ((currentFrame<lastFrame) && (currentFrame>0)) return;
+					int nArgs = m.getNumArgs();
+					long sid = 0;
+					float xpos = 0;
+					float ypos = 0;
+					float xspeed = 0;
+					float yspeed = 0;
+					float maccel = 0;
 
-					long sid  = (long)(m.getArgAsInt32(1));
-					float xpos = m.getArgAsFloat(2);
-					float ypos =  m.getArgAsFloat(3);
-					float xspeed =  m.getArgAsFloat(4);
-					float yspeed =  m.getArgAsFloat(5);
-					float maccel =  m.getArgAsFloat(6);
+					if(nArgs > 1 ) sid = (long)(m.getArgAsInt32(1));
+					if(nArgs > 2 ) xpos = m.getArgAsFloat(2);
+					if(nArgs > 3 ) ypos =  m.getArgAsFloat(3);
+					if(nArgs > 4 ) xspeed = m.getArgAsFloat(4);
+					if(nArgs > 5 ) yspeed = m.getArgAsFloat(5);
+					if(nArgs > 6 ) maccel = m.getArgAsFloat(6);
+
+					if(xspeed != xspeed){
+						xspeed = 0;
+					}
+					if(yspeed != yspeed){
+						yspeed = 0;
+					}
+					if(maccel != maccel){
+						maccel = 0;
+					}
 
 					list<ofxTuioCursor*>::iterator tit;
 					for (tit=cursorList.begin(); tit != cursorList.end(); tit++)
