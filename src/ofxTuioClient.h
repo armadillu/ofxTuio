@@ -144,13 +144,13 @@ public:
 					if(nArgs > 5 ) yspeed = m.getArgAsFloat(5);
 					if(nArgs > 6 ) maccel = m.getArgAsFloat(6);
 
-					if(xspeed != xspeed){
+					if(xspeed != xspeed || !std::isfinite(xspeed)){
 						xspeed = 0;
 					}
-					if(yspeed != yspeed){
+					if(yspeed != yspeed || !std::isfinite(yspeed)){
 						yspeed = 0;
 					}
-					if(maccel != maccel){
+					if(maccel != maccel || !std::isfinite(maccel)){
 						maccel = 0;
 					}
 
