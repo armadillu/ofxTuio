@@ -30,63 +30,23 @@ class ofxTuioObject : public ofxTuioContainer{
 	
 public:
 	
-	ofxTuioObject(long _sid, int _fid, float _xpos, float _ypos, float _angle) : ofxTuioContainer( _sid,  _xpos,  _ypos){
-        fiducialId = _fid;
-	    angle = _angle;
-		rotation_speed = 0.0f;
-		rotation_accel = 0.0f;
-		xpos = _xpos;
-		ypos = _ypos;
-		
-	};
+	ofxTuioObject(long _sid, int _fid, float _xpos, float _ypos, float _angle);
+	ofxTuioObject(ofxTuioObject * _tuioObject);
 	
-	ofxTuioObject(ofxTuioObject * _tuioObject) : ofxTuioContainer(_tuioObject){
-        fiducialId = _tuioObject->getFiducialId();
-	    angle = _tuioObject->getAngle();
-		rotation_speed = _tuioObject->getRotationSpeed();
-		rotation_accel = _tuioObject->getRotationAccel();
-	    xpos = _tuioObject->getX();
-		ypos = _tuioObject->getY();
-	};
+	~ofxTuioObject();
 	
-	~ofxTuioObject(){};
+	void update (float _xpos, float _ypos, float _angle, float _xspeed, float _yspeed, float _rspeed, float _maccel, float _raccel) ;
+	void update (ofxTuioObject * _tuioObject) ;
 	
-	void update (float _xpos, float _ypos, float _angle, float _xspeed, float _yspeed, float _rspeed, float _maccel, float _raccel) {
-		ofxTuioContainer::update(_xpos,_ypos,_xspeed,_yspeed,_maccel);
-		angle = _angle;
-		rotation_speed = _rspeed;
-		rotation_accel = _raccel;
-	};
+	int getFiducialId() ;
+	float getAngle() ;
+	float getAngleDegrees() ;
+	float getRotationSpeed() ;
+	float getRotationAccel() ;
 	
-	void update (ofxTuioObject * _tuioObject) {
-		ofxTuioContainer::update(_tuioObject);
-		angle = _tuioObject->getAngle();
-		rotation_speed = _tuioObject->getRotationSpeed();
-		rotation_accel = _tuioObject->getRotationAccel();
-	};
-	
-	int getFiducialId() { 
-		return fiducialId; 
-	};
-	
-	float getAngle() { 
-		return angle; 
-	};
-	
-	float getAngleDegrees() { 
-		return (float)(angle/PI*180); 
-	};
-	
-	float getRotationSpeed() { 
-		return rotation_speed; 
-	};
-	
-	float getRotationAccel() { 
-		return rotation_accel; 
-	};
-	
-	
+
 protected:
+
 	int fiducialId;
 	float angle;
 	float rotation_speed, rotation_accel;

@@ -30,68 +30,19 @@ class ofxTuioContainer : public ofxTuioPoint{
 	
 public:
 	
-	ofxTuioContainer(long _sid, float _xpos, float _ypos) : ofxTuioPoint(xpos,  ypos){
-		sessionId = _sid;
-		xspeed = 0.0f;
-		yspeed = 0.0f;
-		motion_speed = 0.0f;
-		motion_accel = 0.0f;
-		xpos = _xpos;
-		ypos = _ypos;
-	};
+	ofxTuioContainer(long _sid, float _xpos, float _ypos);
+	ofxTuioContainer(ofxTuioContainer * _tuioContainer);
+	virtual ~ofxTuioContainer();
 	
-	ofxTuioContainer(ofxTuioContainer * _tuioContainer) : ofxTuioPoint(_tuioContainer){
-		sessionId = _tuioContainer->getSessionId();
-		xspeed = _tuioContainer->getXSpeed();
-		yspeed = _tuioContainer->getYSpeed();
-		motion_speed = _tuioContainer->getMotionSpeed();
-		motion_accel = _tuioContainer->getMotionAccel();
-		xpos = _tuioContainer->getX();
-		ypos = _tuioContainer->getY();
-	};
+	virtual void update (float _xpos, float _ypos, float _xspeed, float _yspeed, float _maccel);
+	virtual void update (ofxTuioContainer * _tuioContainer) ;
 	
-	virtual ~ofxTuioContainer(){};
-	
-	virtual void update (float _xpos, float _ypos, float _xspeed, float _yspeed, float _maccel) {
-		ofxTuioPoint::update(_xpos, _ypos);
-		xspeed = _xspeed;
-		yspeed = _yspeed;
-		motion_speed = (float)sqrt(_xspeed*_xspeed+_yspeed*_yspeed);
-		motion_accel = _maccel;
-	};
-	
-	virtual void update (ofxTuioContainer * _tuioContainer) {
-		ofxTuioPoint::update(_tuioContainer);
-		xspeed = _tuioContainer->getXSpeed();
-		yspeed = _tuioContainer->getYSpeed();
-		motion_speed = _tuioContainer->getMotionSpeed();
-		motion_accel = _tuioContainer->getMotionAccel();
-	};
-	
-	virtual long getSessionId() { 
-		return sessionId; 
-	};
-	
-    virtual ofxTuioPoint getPosition() {
-		ofxTuioPoint p(xpos,ypos);
-		return p;
-	};
-	
-	virtual float getXSpeed(){
-		return xspeed;
-	};
-	
-	virtual float getYSpeed(){
-		return yspeed;
-	};
-	
-	virtual float getMotionSpeed(){
-		return motion_speed;
-	};
-	
-	virtual float getMotionAccel(){
-		return motion_accel;
-	};
+	virtual long getSessionId() ;
+    virtual ofxTuioPoint getPosition() ;
+	virtual float getXSpeed();
+	virtual float getYSpeed();
+	virtual float getMotionSpeed();
+	virtual float getMotionAccel();
 	
 protected:
 	long sessionId;

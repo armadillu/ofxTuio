@@ -28,66 +28,22 @@ class ofxTuioPoint{
 	
 public:
 	
-	ofxTuioPoint(float _xpos, float _ypos){
-		xpos = _xpos;
-		ypos = _ypos;
-	};
+	ofxTuioPoint(float _xpos, float _ypos);
+	ofxTuioPoint(ofxTuioPoint * _tuioPoint);
+	~ofxTuioPoint();
 	
-	ofxTuioPoint(ofxTuioPoint * _tuioPoint){
-		xpos = _tuioPoint->getX();
-		ypos = _tuioPoint->getY();
-	};
+	void update (float _xpos, float _ypos);
+	void update (ofxTuioPoint * _tuioPoint);
 	
-	~ofxTuioPoint(){};
-	
-	void update (float _xpos, float _ypos) {
-		xpos = _xpos;
-		ypos = _ypos;
-	};
-	
-	void update (ofxTuioPoint * _tuioPoint) {
-	    xpos = _tuioPoint->getX();
-		ypos = _tuioPoint->getY();
-	};
-	
-	float getX(){
-		return xpos;
-	};
-	
-	float getY(){
-		return ypos;
-	};
-	
-	float getDistance(float _x, float _y) {
-		float dx = xpos-_x;
-		float dy = ypos-_y;
-		return sqrtf(dx*dx+dy*dy);
-	};
-	
-	float getDistance(ofxTuioPoint * _tuioPoint) {
-		float dx = xpos-_tuioPoint->getX();
-		float dy = ypos-_tuioPoint->getY();
-		return sqrtf(dx*dx+dy*dy);
-	};
-	
-	float getAngle(ofxTuioPoint * _tuioPoint) {
-		
-		float side = _tuioPoint->getX()-xpos;
-		float height = _tuioPoint->getY()-ypos;
-		float distance = _tuioPoint->getDistance(xpos,ypos);
-		
-		float angle = (float)(asin(side/distance)+PI/2);
-		if (height<0) angle = 2.0f*(float)PI-angle;
-		
-		return angle;
-	};
-	
-	float getAngleDegrees(ofxTuioPoint * _tuioPoint) {
-		return ((getAngle(_tuioPoint)/(float)PI)*180.0f);
-	};
-	
-	
+	float getX();
+	float getY();
+	float getDistance(float _x, float _y);
+	float getDistance(ofxTuioPoint * _tuioPoint);
+	float getAngle(ofxTuioPoint * _tuioPoint);
+	float getAngleDegrees(ofxTuioPoint * _tuioPoint);
+
 protected:
+	
 	float xpos = 0, ypos = 0;
 };
 
