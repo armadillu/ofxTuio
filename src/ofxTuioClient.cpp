@@ -199,10 +199,21 @@ void ofxTuioClient::getMessage(){
 				aliveCursorList = newCursorList;
 				newCursorList.clear();
 			}
-		} else if( m.getArgAsString( 0 ) == "fseq" ){
+		// TODO: handle tuio v2
+		} else if (m.getAddress() == "/tuio2/alv") {
 
-			if(currentFrame>0) lastFrame = currentFrame;
-			currentFrame  = (int)(m.getArgAsInt32(1));
+		} else if (m.getAddress() == "/tuio2/frm") {
+
+		} else if (m.getAddress() == "/tuio2/ptr") {
+
+		} else {
+			// TODO: probably a legacy
+			if (m.getNumArgs() > 0) {
+				if (m.getArgAsString(0) == "fseq") {
+					if (currentFrame > 0) lastFrame = currentFrame;
+					currentFrame = (int)(m.getArgAsInt32(1));
+				}
+			}
 		}
 	}
 };
