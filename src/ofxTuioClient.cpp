@@ -1,6 +1,8 @@
 
 #include "ofxTuioClient.h"
 
+using namespace std;
+
 ofxTuioClient::ofxTuioClient(){
 	currentFrame = lastFrame = maxFingerID = -1;
 };

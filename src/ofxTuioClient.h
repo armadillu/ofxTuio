@@ -44,8 +44,8 @@ public:
 	void drawCursors();
 	void drawObjects();
 
-	list<ofxTuioObject*> getTuioObjects();
-	list<ofxTuioCursor*> getTuioCursors();
+	std::list<ofxTuioObject*> getTuioObjects();
+	std::list<ofxTuioCursor*> getTuioCursors();
 
 	ofEvent<ofxTuioCursor> cursorRemoved;
 	ofEvent<ofxTuioCursor> cursorAdded;
@@ -58,14 +58,14 @@ public:
 private:
 
 	ofxOscReceiver	receiver;
-	list<ofxTuioCursor*> cursorList;
-	list<ofxTuioCursor*> freeCursorList;
-	list<ofxTuioCursor*> freeCursorBuffer;
-	list<ofxTuioObject*> objectList;
-	list<long> aliveObjectList;
-	list<long> newObjectList;
-	list<long> aliveCursorList;
-	list<long> newCursorList;
+	std::list<ofxTuioCursor*> cursorList;
+	std::list<ofxTuioCursor*> freeCursorList;
+	std::list<ofxTuioCursor*> freeCursorBuffer;
+	std::list<ofxTuioObject*> objectList;
+	std::list<long> aliveObjectList;
+	std::list<long> newObjectList;
+	std::list<long> aliveCursorList;
+	std::list<long> newCursorList;
 
 	int currentFrame, lastFrame, maxFingerID;
 };
